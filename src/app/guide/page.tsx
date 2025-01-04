@@ -1,7 +1,6 @@
 import { Divider } from "@nextui-org/divider";
 
 import { subtitle, title } from "@/src/components/primitives";
-import { Code } from "@nextui-org/code";
 
 export default function Home() {
   return (
