@@ -24,17 +24,12 @@ export const AddTestModalButton = ({
 }: {
   text: string;
   variant: "ghost" | "solid";
-  uploadTest: (
-    name: string,
-    multipleChoice: boolean,
-    file: File,
-  ) => Promise<void>;
+  uploadTest: (name: string, file: File) => Promise<void>;
   onFinish?: () => void;
   redirectToMyWork?: boolean;
 }) => {
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const [testType, setTestType] = useState<string>("multiple-choice");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,9 +38,8 @@ export const AddTestModalButton = ({
 
     const file = data.testFile as File;
     const name = data.testName as string;
-    const type = data.testType as string;
 
-    await uploadTest(name, type === "multiple-choice", file);
+    await uploadTest(name, file);
     onClose();
 
     if (redirectToMyWork) {
@@ -85,17 +79,6 @@ export const AddTestModalButton = ({
                       placeholder="Zadejte název testu"
                       type="text"
                     />
-                    <RadioGroup
-                      label="Typ testu"
-                      name="testType"
-                      value={testType}
-                      onChange={(e) => setTestType(e.target.value)}
-                    >
-                      <Radio value="multiple-choice">
-                        Více možných odpovědí
-                      </Radio>
-                      <Radio value="single-choice">Jedna správná odpověď</Radio>
-                    </RadioGroup>
                     <Input
                       isRequired
                       accept=".txt"

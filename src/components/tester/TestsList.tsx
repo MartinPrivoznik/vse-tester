@@ -21,7 +21,7 @@ export default function TestsList({
     const questionCount = test.questions.length;
 
     return (
-      <Card key={index} className="max-w-[220px]">
+      <Card key={index} className="w-[220px]">
         <CardHeader className="flex gap-3">
           <div className="w-full flex items-center justify-center">
             <p className="text-md">{test.name}</p>

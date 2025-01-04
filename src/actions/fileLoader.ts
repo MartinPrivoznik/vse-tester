@@ -7,7 +7,6 @@ import Test, { Question } from "../models/Test";
 
 export async function processFile(
   name: string,
-  multipleChoice: boolean,
   file: File,
 ): Promise<ApiResponse<Test>> {
   try {
@@ -46,6 +45,10 @@ export async function processFile(
     if (currentQuestion) {
       questions.push(currentQuestion);
     }
+
+    const multipleChoice = questions.some(
+      (q) => q.answers.filter((a) => a.isCorrect).length > 1,
+    );
 
     const test: Test = {
       id: uuidv6(),

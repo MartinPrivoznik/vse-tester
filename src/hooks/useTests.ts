@@ -40,13 +40,9 @@ export default function useTests() {
     setTests(getTests());
   };
 
-  const uploadTest = async (
-    name: string,
-    multipleChoice: boolean,
-    file: File,
-  ) => {
+  const uploadTest = async (name: string, file: File) => {
     setUploadLoading(true);
-    const res = await processFile(name, multipleChoice, file);
+    const res = await processFile(name, file);
 
     if (!res.success || !res.data) {
       setUploadLoading(false);
