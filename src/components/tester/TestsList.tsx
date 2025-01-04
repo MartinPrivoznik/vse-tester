@@ -23,7 +23,7 @@ export default function TestsList({
     return (
       <Card key={index} className="w-[220px]">
         <CardHeader className="flex gap-3">
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center">
             <p className="text-md">{test.name}</p>
           </div>
         </CardHeader>
