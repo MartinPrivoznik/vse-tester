@@ -1,5 +1,6 @@
 import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
+
+import { AddTestModalButton } from "../components/tester/AddTestModalButton";
 
 import { subtitle, title } from "@/src/components/primitives";
 
@@ -15,9 +16,15 @@ export default function Home() {
         </span>
       </div>
       <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
+        <Snippet
+          hideCopyButton
+          hideSymbol
+          className="px-3 py-2"
+          variant="bordered"
+        >
           <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
+            Začněte&nbsp;&nbsp;
+            <AddTestModalButton text="přidáním testu" variant="ghost" />
           </span>
         </Snippet>
       </div>
