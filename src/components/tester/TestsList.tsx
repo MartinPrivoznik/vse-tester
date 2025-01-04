@@ -37,7 +37,7 @@ export default function TestsList({
           <p className="text-small text-default-500">
             Test obsahuje {questionCount} otázek
           </p>
-          <div className="flex w-full gap-2 justify-center mt-2">
+          <div className="flex w-full gap-2 justify-between mt-2">
             <Button
               color="primary"
               size="sm"

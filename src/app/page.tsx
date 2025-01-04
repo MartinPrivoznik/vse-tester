@@ -14,7 +14,7 @@ export default function Home() {
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-xl text-center justify-center">
         <span className={title({ color: "violet" })}>VŠE&nbsp;</span>
-        <span className={title()}>Tester</span>
+        <span className={title()}>Tester V2.0</span>
         <span className={subtitle()}>
           Webová adaptace aplikace kompatibilní s .txt soubory pro appku VŠE
           tester
