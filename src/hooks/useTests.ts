@@ -30,8 +30,10 @@ export default function useTests() {
   };
 
   const deleteTest = (id: string) => {
-    localStorage.removeItem(localStoragePrefix + id);
-    setTests(getTests());
+    if (confirm("Opravdu chcete smazat tento test?")) {
+      localStorage.removeItem(localStoragePrefix + id);
+      setTests(getTests());
+    }
   };
 
   const refreshTests = () => {

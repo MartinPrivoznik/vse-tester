@@ -17,7 +17,11 @@ import { GithubIcon } from "@/src/components/icons";
 
 export const Navbar = () => {
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar
+      className="bg-default-50 shadow-lg"
+      maxWidth="xl"
+      position="sticky"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden sm:flex gap-8 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
