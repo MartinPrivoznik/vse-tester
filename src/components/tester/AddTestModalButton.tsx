@@ -13,19 +13,27 @@ import { Form } from "@nextui-org/form";
 import { Input } from "@nextui-org/input";
 import { Radio, RadioGroup } from "@nextui-org/radio";
 import { FormEvent, useState } from "react";
-
-import useTests from "@/src/hooks/useTests";
+import { useRouter } from "next/navigation";
 
 export const AddTestModalButton = ({
   text,
   variant = "solid",
+  uploadTest,
+  onFinish,
+  redirectToMyWork = false,
 }: {
   text: string;
   variant: "ghost" | "solid";
+  uploadTest: (
+    name: string,
+    multipleChoice: boolean,
+    file: File,
+  ) => Promise<void>;
+  onFinish?: () => void;
+  redirectToMyWork?: boolean;
 }) => {
-  const tests = useTests();
-
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [testType, setTestType] = useState<string>("multiple-choice");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -37,7 +45,16 @@ export const AddTestModalButton = ({
     const name = data.testName as string;
     const type = data.testType as string;
 
-    await tests.uploadTest(name, type === "multiple-choice", file);
+    await uploadTest(name, type === "multiple-choice", file);
+    onClose();
+
+    if (redirectToMyWork) {
+      router.push("/my-work");
+    }
+
+    if (onFinish) {
+      onFinish();
+    }
   };
 
   return (

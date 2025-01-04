@@ -11,7 +11,9 @@ export interface Question {
 }
 
 export default interface Test {
+  id: string;
   name: string;
   multipleChoice: boolean;
   questions: Question[];
+  uploadDate: Date;
 }

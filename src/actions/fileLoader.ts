@@ -1,5 +1,7 @@
 "use server";
 
+import { v6 as uuidv6 } from "uuid";
+
 import ApiResponse from "../models/ApiResponse";
 import Test, { Question } from "../models/Test";
 
@@ -46,16 +48,18 @@ export async function processFile(
     }
 
     const test: Test = {
+      id: uuidv6(),
       name,
       multipleChoice,
       questions,
+      uploadDate: new Date(),
     };
 
     return {
       success: true,
       data: test,
     };
-  } catch (error) {
+  } catch {
     return {
       success: false,
       message: "Chyba při zpracování souboru",

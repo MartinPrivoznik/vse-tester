@@ -1,10 +1,15 @@
+"use client";
+
 import { Snippet } from "@nextui-org/snippet";
 
 import { AddTestModalButton } from "../components/tester/AddTestModalButton";
+import useTests from "../hooks/useTests";
 
 import { subtitle, title } from "@/src/components/primitives";
 
 export default function Home() {
+  const { uploadTest } = useTests();
+
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-xl text-center justify-center">
@@ -24,7 +29,12 @@ export default function Home() {
         >
           <span>
             Začněte&nbsp;&nbsp;
-            <AddTestModalButton text="přidáním testu" variant="ghost" />
+            <AddTestModalButton
+              redirectToMyWork
+              text="přidáním testu"
+              uploadTest={uploadTest}
+              variant="ghost"
+            />
           </span>
         </Snippet>
       </div>

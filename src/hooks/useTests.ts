@@ -1,40 +1,70 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { processFile } from "../actions/fileLoader";
 import Test from "../models/Test";
 
-export default function useTests() {
-  const router = useRouter();
+const localStoragePrefix = "test-";
 
-  const [loading, setLoading] = useState(false);
+export default function useTests() {
+  const [tests, setTests] = useState<Test[] | null>();
+  const [uploadLoading, setUploadLoading] = useState(false);
+
+  useEffect(() => {
+    setTests(getTests());
+  }, []);
+
+  const getTests = (): Test[] => {
+    const keys = Object.keys(localStorage).filter((key) =>
+      key.startsWith(localStoragePrefix),
+    );
+
+    return keys.map((key) => {
+      const test = localStorage.getItem(key);
+
+      if (!test) {
+        return null;
+      }
+
+      return JSON.parse(test);
+    });
+  };
+
+  const deleteTest = (id: string) => {
+    localStorage.removeItem(localStoragePrefix + id);
+    setTests(getTests());
+  };
+
+  const refreshTests = () => {
+    setTests(getTests());
+  };
 
   const uploadTest = async (
     name: string,
     multipleChoice: boolean,
     file: File,
   ) => {
-    setLoading(true);
+    setUploadLoading(true);
     const res = await processFile(name, multipleChoice, file);
 
     if (!res.success || !res.data) {
-      setLoading(false);
+      setUploadLoading(false);
       alert(res.message ?? "Chyba při nahrávání testu");
       throw new Error(res.message ?? "Chyba při nahrávání testu");
     }
 
     saveTestToLocalStorage(res.data);
-
-    setLoading(false);
-    router.push("/my-work");
+    setUploadLoading(false);
   };
 
   const saveTestToLocalStorage = (test: Test) => {
-    localStorage.setItem("test", JSON.stringify(test));
+    localStorage.setItem(localStoragePrefix + test.id, JSON.stringify(test));
   };
 
   return {
-    loading,
+    tests,
+    deleteTest,
+    refreshTests,
+    uploadLoading,
     uploadTest,
   };
 }
