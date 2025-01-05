@@ -8,6 +8,7 @@ export interface Question {
   question: string;
   answers: Answer[];
   userAnswerIds?: number[];
+  seen?: boolean;
 }
 
 export default interface Test {

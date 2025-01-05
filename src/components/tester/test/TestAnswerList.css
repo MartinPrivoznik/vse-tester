@@ -1,0 +1,7 @@
+.answer-list-item {
+  @apply !border-1 !border-default !rounded-lg my-2;
+}
+
+.answer-list-item[data-selected="true"] {
+  @apply !bg-primary-500 border-primary-500;
+}

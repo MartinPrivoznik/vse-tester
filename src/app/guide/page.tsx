@@ -4,7 +4,7 @@ import { subtitle, title } from "@/src/components/primitives";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center gap-4 px-2 md:px-10">
+    <section className="flex flex-col items-center gap-4 px-2 md:px-10 mb-8">
       <div className="inline-block max-w-xl text-center justify-center">
         <span className={title()}>Návod</span>
       </div>
@@ -35,6 +35,15 @@ export default function Home() {
           <br />
           <br />
           (a tak dále...)
+        </p>
+        <Divider className="my-3" />
+        <h2 className={subtitle()}>Typy testů</h2>
+        <p className="text-justify">
+          V aplikaci je možné nahrát dva typy testů: s více správnými odpověďmi
+          a s jednou správnou odpovědí. Typ je automaticky vyhodnocen při
+          nahrání. Pokud nahráváte test s jednou správnou odpovědí na otázky a
+          systém vyhodnotí, že se jedná o test s více správnými odpověďmi,
+          překontrolujte soubor, který nahráváte.
         </p>
       </div>
     </section>
