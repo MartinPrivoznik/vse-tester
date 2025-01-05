@@ -1,6 +1,7 @@
 import { Divider } from "@nextui-org/divider";
 
 import { subtitle, title } from "@/src/components/primitives";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -45,6 +46,27 @@ export default function Home() {
           systém vyhodnotí, že se jedná o test s více správnými odpověďmi,
           překontrolujte soubor, který nahráváte.
         </p> */}
+        <Divider className="my-3" />
+        <h2 className={subtitle()}>Hlášení chyb</h2>
+        <p className="text-justify">
+          Chyby můžete hlásit buďto mně přímo na{" "}
+          <Link
+            className="text-primary"
+            href="https://discord.com/users/252171172974821386"
+            target="_blank"
+          >
+            Discord
+          </Link>
+          , nebo vytvořením issue na{" "}
+          <Link
+            className="text-primary"
+            href="https://github.com/MartinPrivoznik/vse-tester/issues"
+            target="_blank"
+          >
+            Githubu
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );
