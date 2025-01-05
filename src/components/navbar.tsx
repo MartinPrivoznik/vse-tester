@@ -19,7 +19,7 @@ import { GithubIcon } from "@/src/components/icons";
 export const Navbar = () => {
   return (
     <NextUINavbar
-      className="bg-default-50 shadow-lg"
+      className="bg-default-50 shadow-md shadow-default"
       maxWidth="xl"
       position="sticky"
     >

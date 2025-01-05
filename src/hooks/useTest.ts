@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
 
 import Test from "../models/Test";
 
@@ -11,7 +12,7 @@ export default function useTest(id: string) {
     const testJson = localStorage.getItem(localStoragePrefix + id);
 
     if (!testJson) {
-      throw new Error("Test not found");
+      notFound();
     }
 
     return JSON.parse(testJson);
