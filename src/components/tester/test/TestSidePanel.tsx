@@ -2,6 +2,7 @@
 
 import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
+import { GrPowerReset } from "react-icons/gr";
 
 import OptionButtons from "./TestSidePanel/OptionButtons";
 import QuestionList from "./TestSidePanel/QuestionList";
@@ -39,6 +40,7 @@ export default function TestSidePanel({
           test={test}
         />
         <Button variant="light" onPress={() => resetTest()}>
+          <GrPowerReset />
           Reset
         </Button>
       </CardBody>

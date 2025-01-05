@@ -1,6 +1,9 @@
 "use client";
 
 import { Button } from "@nextui-org/button";
+import { FaCheck } from "react-icons/fa";
+import { GrLinkNext } from "react-icons/gr";
+import { FaShuffle } from "react-icons/fa6";
 
 export default function OptionButtons({
   validateAnswers,
@@ -18,6 +21,7 @@ export default function OptionButtons({
         variant="solid"
         onPress={() => validateAnswers()}
       >
+        <FaCheck className="mr-2" />
         Zkontrolovat odpovědi
       </Button>
       <Button
@@ -25,6 +29,7 @@ export default function OptionButtons({
         variant="ghost"
         onPress={() => processToNextQuestion()}
       >
+        <GrLinkNext className="mr-2" />
         Další otázka
       </Button>
       <Button
@@ -32,6 +37,7 @@ export default function OptionButtons({
         variant="ghost"
         onPress={() => processToRandomQuestion()}
       >
+        <FaShuffle className="mr-2" />
         Náhodná otázka
       </Button>
     </div>
