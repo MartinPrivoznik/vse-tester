@@ -113,22 +113,16 @@ export default function useTest(id: string) {
   };
 
   const resetTest = () => {
-    if (!test) {
-      return;
-    }
+    const test = getTestById(id);
 
     test.questions.forEach((question) => {
       question.seen = false;
       question.success = undefined;
     });
 
-    const firstQuestion = test.questions[0];
-
-    firstQuestion.seen = true;
-    shuffle(firstQuestion.answers);
-
-    changeQuestion(firstQuestion);
-    syncTestWithStorage(test);
+    setTest(test);
+    setQuestionCount(test.questions.length);
+    setCurrentQuestionAnswered(false);
   };
 
   const validateAnswers = (selectedAnswers: Array<number>) => {

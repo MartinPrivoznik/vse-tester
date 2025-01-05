@@ -5,7 +5,6 @@ import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import "./TestAnswerList.css";
 
 import clsx from "clsx";
-import { useEffect, useState } from "react";
 
 import { Answer } from "@/src/models/Test";
 
