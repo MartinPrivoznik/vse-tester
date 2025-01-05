@@ -44,8 +44,8 @@ export default function TestView({ testId }: { testId: string }) {
         Test obsahuje {questionCount} otázek
       </span>
       <TestStatisticsRow test={test} />
-      <div className="flex gap-8 mt-4">
-        <div className="w-2/3">
+      <div className="flex flex-col md:flex-row gap-8 mt-4">
+        <div className="w-full md:w-2/3">
           <TestQuestion
             currentQuestionAnswered={currentQuestionAnswered}
             question={currentQuestion}
@@ -53,7 +53,7 @@ export default function TestView({ testId }: { testId: string }) {
             setSelectedAnswers={setSelectedAnswers}
           />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <TestSidePanel
             currentQuestion={currentQuestion}
             currentQuestionAnswered={currentQuestionAnswered}

@@ -18,11 +18,11 @@ export default function TestStatisticsRow({ test }: { test: Test }) {
 
   return (
     <div className="w-full">
-      <div className="flex gap-8">
-        <div className="w-2/3 min-h-full flex items-end">
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="w-full md:w-2/3 min-h-full flex items-end">
           <Progress aria-label="Test progression" value={progress} />
         </div>
-        <div className="w-1/3">
+        <div className="w-full md:w-1/3">
           <Card className="w-full h-full p-2">
             <CardBody className="p-1 px-3 flex-row gap-4">
               <span className="font-bold">{progress.toFixed(0)}%</span>

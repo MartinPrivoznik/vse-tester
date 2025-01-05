@@ -47,7 +47,9 @@ export default function TestAnswerList({
           )}
           textValue={answer.text}
         >
-          <p className="py-2 px-1 text-medium">{answer.text}</p>
+          <p className="py-1 md:py-2 px-1 text-sm md:text-medium">
+            {answer.text}
+          </p>
         </ListboxItem>
       ))}
     </Listbox>

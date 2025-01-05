@@ -1,5 +1,5 @@
 .answer-list-item {
-  @apply !border-2 !border-default-100 !rounded-lg my-2;
+  @apply !border-2 !border-default-100 !rounded-lg my-1 md:my-2 p-1 md:p-2;
 }
 
 .answer-list-item[data-selected="true"] {
