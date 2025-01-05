@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { subtitle, title } from "../../primitives";
 
@@ -13,14 +13,24 @@ export default function TestView({ testId }: { testId: string }) {
   const {
     test,
     currentQuestion,
+    currentQuestionAnswered,
     questionCount,
     processToNextQuestion,
     processToRandomQuestion,
     processToQuestion,
     resetTest,
+    validateAnswers,
   } = useTest(testId);
 
   const [selectedAnswers, setSelectedAnswers] = useState<Array<string>>([]);
+
+  const handleValidateAnswers = () => {
+    validateAnswers(selectedAnswers.map(Number));
+  };
+
+  useEffect(() => {
+    setSelectedAnswers([]);
+  }, [currentQuestion?.answers]);
 
   if (!test || !currentQuestion) {
     return;
@@ -35,6 +45,7 @@ export default function TestView({ testId }: { testId: string }) {
       <div className="flex gap-8 mt-8">
         <div className="w-2/3">
           <TestQuestion
+            currentQuestionAnswered={currentQuestionAnswered}
             question={currentQuestion}
             selectedAnswers={selectedAnswers}
             setSelectedAnswers={setSelectedAnswers}
@@ -48,7 +59,7 @@ export default function TestView({ testId }: { testId: string }) {
             processToRandomQuestion={processToRandomQuestion}
             resetTest={resetTest}
             test={test}
-            validateAnswers={() => {}}
+            validateAnswers={handleValidateAnswers}
           />
         </div>
       </div>

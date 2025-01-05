@@ -1,8 +1,11 @@
 "use client";
 
-import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import { Selection } from "@react-types/shared";
+import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import "./TestAnswerList.css";
+
+import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 import { Answer } from "@/src/models/Test";
 
@@ -10,10 +13,12 @@ export default function TestAnswerList({
   answers,
   selectedAnswers,
   setSelectedAnswers,
+  currentQuestionAnswered,
 }: {
   answers: Answer[];
   selectedAnswers: Array<string>;
   setSelectedAnswers: (answers: Array<string>) => void;
+  currentQuestionAnswered: boolean;
 }) {
   const handleSelectionChange = (keys: Selection) => {
     setSelectedAnswers(Array.from(keys as Set<string>));
@@ -22,15 +27,25 @@ export default function TestAnswerList({
   return (
     <Listbox
       aria-label="Test answers"
+      disabledKeys={
+        currentQuestionAnswered ? answers.map((a) => a.id.toString()) : []
+      }
       selectedKeys={selectedAnswers}
       selectionMode="multiple"
       variant="flat"
       onSelectionChange={handleSelectionChange}
     >
-      {answers.map((answer, index) => (
+      {answers.map((answer) => (
         <ListboxItem
-          key={index}
-          className="answer-list-item"
+          key={answer.id}
+          className={clsx(
+            "answer-list-item",
+            currentQuestionAnswered && answer.isCorrect && "correct",
+            currentQuestionAnswered &&
+              !answer.isCorrect &&
+              selectedAnswers.includes(answer.id.toString()) &&
+              "wrong",
+          )}
           textValue={answer.text}
         >
           <p className="py-2 px-1 text-medium">{answer.text}</p>

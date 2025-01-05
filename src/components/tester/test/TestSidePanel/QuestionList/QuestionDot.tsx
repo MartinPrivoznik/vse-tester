@@ -13,8 +13,11 @@ const unseenDotStyles =
 const seenDotStyles =
   "bg-default-500 border-default-500 hover:bg-default-600 hover:border-default-600";
 
-const activeDotStyles =
-  "bg-primary-500 border-primary-500 hover:bg-primary-600 hover:border-primary-600";
+const activeDotStyles = "border-primary-900";
+
+const successDotStyles = "bg-green-500 border-green-500";
+
+const failureDotStyles = "bg-red-500 border-red-500";
 
 export default function QuestionDot({
   index,
@@ -32,17 +35,25 @@ export default function QuestionDot({
   useEffect(() => {
     if (isActive) {
       setDotSpecStyle(activeDotStyles);
+    }
+
+    if (question.success !== undefined) {
+      if (question.success) {
+        setDotSpecStyle(successDotStyles);
+      } else {
+        setDotSpecStyle(failureDotStyles);
+      }
     } else if (question.seen) {
       setDotSpecStyle(seenDotStyles);
     } else {
       setDotSpecStyle(unseenDotStyles);
     }
-  }, [isActive, question.seen]);
+  }, [isActive, question.success, question.seen]);
 
   return (
     <div
       aria-hidden="true"
-      className={clsx(dotStyles, dotSpecStyle)}
+      className={clsx(dotStyles, dotSpecStyle, isActive && activeDotStyles)}
       title={question.question}
       onClick={() => processToQuestion(index)}
     />

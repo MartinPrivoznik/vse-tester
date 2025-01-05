@@ -1,7 +1,17 @@
 .answer-list-item {
-  @apply !border-1 !border-default !rounded-lg my-2;
+  @apply !border-2 !border-default !rounded-lg my-2;
 }
 
 .answer-list-item[data-selected="true"] {
   @apply !bg-primary-500 border-primary-500;
+}
+
+.answer-list-item[data-selected="true"].correct,
+.answer-list-item.correct {
+  @apply !bg-success-50 !border-success;
+}
+
+.answer-list-item[data-selected="true"].wrong,
+.answer-list-item.wrong {
+  @apply !bg-danger-50 !border-danger;
 }

@@ -11,10 +11,12 @@ export default function TestQuestion({
   question,
   selectedAnswers,
   setSelectedAnswers,
+  currentQuestionAnswered,
 }: {
   question: Question;
   selectedAnswers: Array<string>;
   setSelectedAnswers: (answers: Array<string>) => void;
+  currentQuestionAnswered: boolean;
 }) {
   return (
     <Card className="w-full p-3">
@@ -27,6 +29,7 @@ export default function TestQuestion({
       <CardBody className="mt-2">
         <TestAnswerList
           answers={question.answers}
+          currentQuestionAnswered={currentQuestionAnswered}
           selectedAnswers={selectedAnswers}
           setSelectedAnswers={setSelectedAnswers}
         />

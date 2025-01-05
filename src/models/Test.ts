@@ -5,9 +5,10 @@ export interface Answer {
 }
 
 export interface Question {
+  id: number;
   question: string;
   answers: Answer[];
-  userAnswerIds?: number[];
+  success?: boolean;
   seen?: boolean;
 }
 

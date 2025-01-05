@@ -9,6 +9,8 @@ const localStoragePrefix = "test-";
 export default function useTest(id: string) {
   const [test, setTest] = useState<Test>();
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
+  const [currentQuestionAnswered, setCurrentQuestionAnswered] =
+    useState<boolean>(false);
   const [questionCount, setQuestionCount] = useState<number>(0);
 
   const syncTestWithStorage = (test: Test) => {
@@ -40,6 +42,11 @@ export default function useTest(id: string) {
     return test;
   };
 
+  const changeQuestion = (question: Question) => {
+    setCurrentQuestion(question);
+    setCurrentQuestionAnswered(false);
+  };
+
   useEffect(() => {
     const test = getTestById(id);
 
@@ -63,7 +70,7 @@ export default function useTest(id: string) {
     nextQuestion.seen = true;
     shuffle(nextQuestion.answers);
 
-    setCurrentQuestion(nextQuestion);
+    changeQuestion(nextQuestion);
     syncTestWithStorage(test);
   };
 
@@ -86,7 +93,7 @@ export default function useTest(id: string) {
     randomQuestion.seen = true;
     shuffle(randomQuestion.answers);
 
-    setCurrentQuestion(randomQuestion);
+    changeQuestion(randomQuestion);
     syncTestWithStorage(test);
   };
 
@@ -99,7 +106,9 @@ export default function useTest(id: string) {
 
     question.seen = true;
     shuffle(question.answers);
-    setCurrentQuestion(question);
+
+    changeQuestion(question);
+
     syncTestWithStorage(test);
   };
 
@@ -110,7 +119,7 @@ export default function useTest(id: string) {
 
     test.questions.forEach((question) => {
       question.seen = false;
-      question.userAnswerIds = undefined;
+      question.success = undefined;
     });
 
     const firstQuestion = test.questions[0];
@@ -118,17 +127,43 @@ export default function useTest(id: string) {
     firstQuestion.seen = true;
     shuffle(firstQuestion.answers);
 
-    setCurrentQuestion(firstQuestion);
+    changeQuestion(firstQuestion);
+    syncTestWithStorage(test);
+  };
+
+  const validateAnswers = (selectedAnswers: Array<number>) => {
+    if (!test || !currentQuestion) {
+      return;
+    }
+
+    const currentQuestionIndex = test.questions.indexOf(currentQuestion);
+    let question = test.questions[currentQuestionIndex];
+
+    const correctAnswers = currentQuestion.answers
+      .filter((answer) => answer.isCorrect)
+      .map((answer) => answer.id);
+
+    const success =
+      correctAnswers.length === selectedAnswers.length &&
+      correctAnswers.every((answer) => selectedAnswers.includes(answer));
+
+    question.success = success;
+
+    setCurrentQuestionAnswered(true);
+    setCurrentQuestion(question);
+    setTest(test);
     syncTestWithStorage(test);
   };
 
   return {
     test,
     currentQuestion,
+    currentQuestionAnswered,
     questionCount,
     processToNextQuestion,
     processToRandomQuestion,
     processToQuestion,
     resetTest,
+    validateAnswers,
   };
 }

@@ -2,15 +2,15 @@
 
 import QuestionDot from "./QuestionList/QuestionDot";
 
-import Test from "@/src/models/Test";
+import Test, { Question } from "@/src/models/Test";
 
 export default function QuestionList({
   test,
-  currentQuestionIndex,
+  currentQuestion,
   processToQuestion,
 }: {
   test: Test;
-  currentQuestionIndex: number;
+  currentQuestion: Question;
   processToQuestion: (questionIndex: number) => void;
 }) {
   return (
@@ -20,7 +20,7 @@ export default function QuestionList({
           <QuestionDot
             key={index}
             index={index}
-            isActive={currentQuestionIndex === index}
+            isActive={currentQuestion.id - 1 === index}
             processToQuestion={processToQuestion}
             question={question}
           />

@@ -1,7 +1,5 @@
 "use client";
 
-import { Snippet } from "@nextui-org/snippet";
-
 import { AddTestModalButton } from "../components/tester/AddTestModalButton";
 import useTests from "../hooks/useTests";
 

@@ -35,7 +35,7 @@ export default function TestSidePanel({
           validateAnswers={validateAnswers}
         />
         <QuestionList
-          currentQuestionIndex={test.questions.indexOf(currentQuestion)}
+          currentQuestion={currentQuestion}
           processToQuestion={processToQuestion}
           test={test}
         />

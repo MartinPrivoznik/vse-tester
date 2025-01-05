@@ -11,8 +11,7 @@ import {
 } from "@nextui-org/modal";
 import { Form } from "@nextui-org/form";
 import { Input } from "@nextui-org/input";
-import { Radio, RadioGroup } from "@nextui-org/radio";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 export const AddTestModalButton = ({

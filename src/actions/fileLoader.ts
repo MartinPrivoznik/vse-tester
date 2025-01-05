@@ -29,6 +29,7 @@ export async function processFile(
         currentQuestion = {
           question: line,
           answers: [],
+          id: questions.length + 1,
         };
       } else if (currentQuestion) {
         const isCorrect = line.startsWith("+");
