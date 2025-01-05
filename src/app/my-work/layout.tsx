@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Moje práce",
+  title: "Moje testy",
 };
 
 export default function RootLayout({
