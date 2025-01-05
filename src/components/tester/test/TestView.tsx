@@ -8,6 +8,7 @@ import TestQuestion from "./TestQuestion";
 import TestSidePanel from "./TestSidePanel";
 
 import useTest from "@/src/hooks/useTest";
+import TestStatisticsRow from "./TestStatisticsRow";
 
 export default function TestView({ testId }: { testId: string }) {
   const {
@@ -42,7 +43,8 @@ export default function TestView({ testId }: { testId: string }) {
       <span className={subtitle({ size: "sm" })}>
         Test obsahuje {questionCount} otázek
       </span>
-      <div className="flex gap-8 mt-8">
+      <TestStatisticsRow test={test} />
+      <div className="flex gap-8 mt-4">
         <div className="w-2/3">
           <TestQuestion
             currentQuestionAnswered={currentQuestionAnswered}

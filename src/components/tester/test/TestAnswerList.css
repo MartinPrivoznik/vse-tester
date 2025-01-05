@@ -1,9 +1,9 @@
 .answer-list-item {
-  @apply !border-2 !border-default !rounded-lg my-2;
+  @apply !border-2 !border-default-100 !rounded-lg my-2;
 }
 
 .answer-list-item[data-selected="true"] {
-  @apply !bg-primary-500 border-primary-500;
+  @apply !bg-primary-300 border-primary-300;
 }
 
 .answer-list-item[data-selected="true"].correct,
