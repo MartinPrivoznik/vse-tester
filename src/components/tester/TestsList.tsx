@@ -34,8 +34,9 @@ export default function TestsList({
               ? "Více správných odpovědí"
               : "Jedna správná odpověď"}
           </p>
+          <p className="text-small text-default-500">{questionCount} otázek</p>
           <p className="text-small text-default-500">
-            Test obsahuje {questionCount} otázek
+            Nahráno {new Date(test.uploadDate).toLocaleDateString("cs-CZ")}
           </p>
           <div className="flex w-full gap-2 justify-between mt-2">
             <Button

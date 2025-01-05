@@ -19,7 +19,7 @@ export default function Home() {
           onFinish={refreshTests}
         />
       </div>
-      <div className="mt-8 flex gap-4 flex-wrap">
+      <div className="mt-8 flex gap-4 flex-wrap justify-center">
         {tests && <TestsList deleteTest={deleteTest} tests={tests} />}
       </div>
     </section>
