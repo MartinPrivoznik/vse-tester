@@ -7,7 +7,15 @@ import TestAnswerList from "./TestAnswerList";
 
 import { Question } from "@/src/models/Test";
 
-export default function TestQuestion({ question }: { question: Question }) {
+export default function TestQuestion({
+  question,
+  selectedAnswers,
+  setSelectedAnswers,
+}: {
+  question: Question;
+  selectedAnswers: Array<string>;
+  setSelectedAnswers: (answers: Array<string>) => void;
+}) {
   return (
     <Card className="w-full p-3">
       <CardHeader className="flex gap-3">
@@ -17,7 +25,11 @@ export default function TestQuestion({ question }: { question: Question }) {
       </CardHeader>
       <Divider />
       <CardBody className="mt-2">
-        <TestAnswerList answers={question.answers} />
+        <TestAnswerList
+          answers={question.answers}
+          selectedAnswers={selectedAnswers}
+          setSelectedAnswers={setSelectedAnswers}
+        />
       </CardBody>
     </Card>
   );

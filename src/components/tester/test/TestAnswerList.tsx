@@ -1,23 +1,28 @@
 "use client";
 
 import { Listbox, ListboxItem } from "@nextui-org/listbox";
-import { useState } from "react";
 import { Selection } from "@react-types/shared";
 import "./TestAnswerList.css";
 
 import { Answer } from "@/src/models/Test";
 
-export default function TestAnswerList({ answers }: { answers: Answer[] }) {
-  const [selectedKeys, setSelectedKeys] = useState<Array<string>>([]);
-
+export default function TestAnswerList({
+  answers,
+  selectedAnswers,
+  setSelectedAnswers,
+}: {
+  answers: Answer[];
+  selectedAnswers: Array<string>;
+  setSelectedAnswers: (answers: Array<string>) => void;
+}) {
   const handleSelectionChange = (keys: Selection) => {
-    setSelectedKeys(Array.from(keys as Set<string>));
+    setSelectedAnswers(Array.from(keys as Set<string>));
   };
 
   return (
     <Listbox
       aria-label="Test answers"
-      selectedKeys={selectedKeys}
+      selectedKeys={selectedAnswers}
       selectionMode="multiple"
       variant="flat"
       onSelectionChange={handleSelectionChange}

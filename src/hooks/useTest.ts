@@ -9,6 +9,7 @@ const localStoragePrefix = "test-";
 export default function useTest(id: string) {
   const [test, setTest] = useState<Test>();
   const [currentQuestion, setCurrentQuestion] = useState<Question>();
+  const [questionCount, setQuestionCount] = useState<number>(0);
 
   const syncTestWithStorage = (test: Test) => {
     localStorage.setItem(localStoragePrefix + test.id, JSON.stringify(test));
@@ -40,11 +41,58 @@ export default function useTest(id: string) {
   };
 
   useEffect(() => {
-    setTest(getTestById(id));
+    const test = getTestById(id);
+
+    setTest(test);
+    setQuestionCount(test.questions.length);
   }, []);
+
+  const processToNextQuestion = () => {
+    if (!test || !currentQuestion) {
+      return;
+    }
+
+    const currentQuestionIndex = test.questions.indexOf(currentQuestion);
+
+    if (currentQuestionIndex === test.questions.length - 1) {
+      return;
+    }
+
+    const nextQuestion = test.questions[currentQuestionIndex + 1];
+
+    nextQuestion.seen = true;
+    shuffle(nextQuestion.answers);
+
+    setCurrentQuestion(nextQuestion);
+    syncTestWithStorage(test);
+  };
+
+  const processToRandomQuestion = () => {
+    if (!test) {
+      return;
+    }
+
+    const unseenQuestions = test.questions.filter((q) => !q.seen);
+
+    if (!unseenQuestions.length) {
+      return;
+    }
+
+    const randomQuestion =
+      unseenQuestions[Math.floor(Math.random() * unseenQuestions.length)];
+
+    randomQuestion.seen = true;
+    shuffle(randomQuestion.answers);
+
+    setCurrentQuestion(randomQuestion);
+    syncTestWithStorage(test);
+  };
 
   return {
     test,
     currentQuestion,
+    questionCount,
+    processToNextQuestion,
+    processToRandomQuestion,
   };
 }
