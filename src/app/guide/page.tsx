@@ -36,7 +36,7 @@ export default function Home() {
           <br />
           (a tak dále...)
         </p>
-        <Divider className="my-3" />
+        {/* <Divider className="my-3" />
         <h2 className={subtitle()}>Typy testů</h2>
         <p className="text-justify">
           V aplikaci je možné nahrát dva typy testů: s více správnými odpověďmi
@@ -44,7 +44,7 @@ export default function Home() {
           nahrání. Pokud nahráváte test s jednou správnou odpovědí na otázky a
           systém vyhodnotí, že se jedná o test s více správnými odpověďmi,
           překontrolujte soubor, který nahráváte.
-        </p>
+        </p> */}
       </div>
     </section>
   );

@@ -25,7 +25,7 @@ export default function TestStatisticsRow({ test }: { test: Test }) {
         <div className="w-1/3">
           <Card className="w-full h-full p-2">
             <CardBody className="p-1 px-3 flex-row gap-4">
-              <span className="font-bold">{progress.toPrecision(1)}%</span>
+              <span className="font-bold">{progress.toFixed(0)}%</span>
               <span className="text-success w-auto font-bold ml-auto">
                 {test.questions.filter((q) => q.success).length}
                 &nbsp;správně

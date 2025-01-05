@@ -123,6 +123,7 @@ export default function useTest(id: string) {
     setTest(test);
     setQuestionCount(test.questions.length);
     setCurrentQuestionAnswered(false);
+    syncTestWithStorage(test);
   };
 
   const validateAnswers = (selectedAnswers: Array<number>) => {
