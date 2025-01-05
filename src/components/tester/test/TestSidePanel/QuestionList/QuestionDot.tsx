@@ -13,7 +13,7 @@ const unseenDotStyles =
 const seenDotStyles =
   "bg-default-500 border-default-500 hover:bg-default-600 hover:border-default-600";
 
-const activeDotStyles = "border-primary-900";
+const activeDotStyles = "!border-primary-800";
 
 const successDotStyles = "bg-green-500 border-green-500";
 
@@ -33,10 +33,6 @@ export default function QuestionDot({
   const [dotSpecStyle, setDotSpecStyle] = useState<string>();
 
   useEffect(() => {
-    if (isActive) {
-      setDotSpecStyle(activeDotStyles);
-    }
-
     if (question.success !== undefined) {
       if (question.success) {
         setDotSpecStyle(successDotStyles);
