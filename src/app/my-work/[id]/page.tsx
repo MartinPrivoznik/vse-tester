@@ -8,7 +8,7 @@ export default async function Home({
   const { id } = await params;
 
   return (
-    <section className="flex flex-col px-10">
+    <section className="flex flex-col">
       <TestView testId={id} />
     </section>
   );

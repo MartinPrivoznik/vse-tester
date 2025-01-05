@@ -16,6 +16,8 @@ export default function TestView({ testId }: { testId: string }) {
     questionCount,
     processToNextQuestion,
     processToRandomQuestion,
+    processToQuestion,
+    resetTest,
   } = useTest(testId);
 
   const [selectedAnswers, setSelectedAnswers] = useState<Array<string>>([]);
@@ -40,8 +42,11 @@ export default function TestView({ testId }: { testId: string }) {
         </div>
         <div className="w-1/3">
           <TestSidePanel
+            currentQuestion={currentQuestion}
             processToNextQuestion={processToNextQuestion}
+            processToQuestion={processToQuestion}
             processToRandomQuestion={processToRandomQuestion}
+            resetTest={resetTest}
             test={test}
             validateAnswers={() => {}}
           />

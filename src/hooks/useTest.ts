@@ -90,11 +90,45 @@ export default function useTest(id: string) {
     syncTestWithStorage(test);
   };
 
+  const processToQuestion = (questionIndex: number) => {
+    if (!test) {
+      return;
+    }
+
+    const question = test.questions[questionIndex];
+
+    question.seen = true;
+    shuffle(question.answers);
+    setCurrentQuestion(question);
+    syncTestWithStorage(test);
+  };
+
+  const resetTest = () => {
+    if (!test) {
+      return;
+    }
+
+    test.questions.forEach((question) => {
+      question.seen = false;
+      question.userAnswerIds = undefined;
+    });
+
+    const firstQuestion = test.questions[0];
+
+    firstQuestion.seen = true;
+    shuffle(firstQuestion.answers);
+
+    setCurrentQuestion(firstQuestion);
+    syncTestWithStorage(test);
+  };
+
   return {
     test,
     currentQuestion,
     questionCount,
     processToNextQuestion,
     processToRandomQuestion,
+    processToQuestion,
+    resetTest,
   };
 }
