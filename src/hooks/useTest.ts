@@ -72,14 +72,16 @@ export default function useTest(id: string) {
       return;
     }
 
-    const unseenQuestions = test.questions.filter((q) => !q.seen);
+    let questionsToChooseFrom = test.questions.filter((q) => !q.seen);
 
-    if (!unseenQuestions.length) {
-      return;
+    if (!questionsToChooseFrom.length) {
+      questionsToChooseFrom = test.questions;
     }
 
     const randomQuestion =
-      unseenQuestions[Math.floor(Math.random() * unseenQuestions.length)];
+      questionsToChooseFrom[
+        Math.floor(Math.random() * questionsToChooseFrom.length)
+      ];
 
     randomQuestion.seen = true;
     shuffle(randomQuestion.answers);

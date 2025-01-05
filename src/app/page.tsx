@@ -21,22 +21,15 @@ export default function Home() {
         </span>
       </div>
       <div className="mt-8">
-        <Snippet
-          hideCopyButton
-          hideSymbol
-          className="px-3 py-2"
-          variant="bordered"
-        >
-          <span>
-            Začněte&nbsp;&nbsp;
-            <AddTestModalButton
-              redirectToMyWork
-              text="přidáním testu"
-              uploadTest={uploadTest}
-              variant="ghost"
-            />
-          </span>
-        </Snippet>
+        <span>
+          Začněte&nbsp;&nbsp;
+          <AddTestModalButton
+            redirectToMyWork
+            text="přidáním testu"
+            uploadTest={uploadTest}
+            variant="ghost"
+          />
+        </span>
       </div>
     </section>
   );
