@@ -9,15 +9,18 @@ export default function OptionButtons({
   validateAnswers,
   processToNextQuestion,
   processToRandomQuestion,
+  currentQuestionAnswered,
 }: {
   validateAnswers: () => void;
   processToNextQuestion: () => void;
   processToRandomQuestion: () => void;
+  currentQuestionAnswered: boolean;
 }) {
   return (
     <div className="flex flex-col gap-4">
       <Button
         className="py-4 h-auto font-bold"
+        isDisabled={currentQuestionAnswered}
         variant="solid"
         onPress={() => validateAnswers()}
       >
@@ -25,7 +28,8 @@ export default function OptionButtons({
         Zkontrolovat odpovědi
       </Button>
       <Button
-        className="py-4 h-auto mt-5"
+        className="py-4 h-auto mt-8"
+        isDisabled={!currentQuestionAnswered}
         variant="ghost"
         onPress={() => processToNextQuestion()}
       >
@@ -34,6 +38,7 @@ export default function OptionButtons({
       </Button>
       <Button
         className="py-4 h-auto"
+        isDisabled={!currentQuestionAnswered}
         variant="ghost"
         onPress={() => processToRandomQuestion()}
       >

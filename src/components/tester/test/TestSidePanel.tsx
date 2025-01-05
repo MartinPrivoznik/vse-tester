@@ -17,6 +17,7 @@ export default function TestSidePanel({
   processToRandomQuestion,
   processToQuestion,
   resetTest,
+  currentQuestionAnswered,
 }: {
   test: Test;
   currentQuestion: Question;
@@ -25,11 +26,13 @@ export default function TestSidePanel({
   processToRandomQuestion: () => void;
   processToQuestion: (questionIndex: number) => void;
   resetTest: () => void;
+  currentQuestionAnswered: boolean;
 }) {
   return (
     <Card className="w-full p-3">
       <CardBody className="mt-2 flex flex-col gap-10">
         <OptionButtons
+          currentQuestionAnswered={currentQuestionAnswered}
           processToNextQuestion={processToNextQuestion}
           processToRandomQuestion={processToRandomQuestion}
           validateAnswers={validateAnswers}

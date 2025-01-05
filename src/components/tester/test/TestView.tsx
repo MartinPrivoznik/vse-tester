@@ -54,6 +54,7 @@ export default function TestView({ testId }: { testId: string }) {
         <div className="w-1/3">
           <TestSidePanel
             currentQuestion={currentQuestion}
+            currentQuestionAnswered={currentQuestionAnswered}
             processToNextQuestion={processToNextQuestion}
             processToQuestion={processToQuestion}
             processToRandomQuestion={processToRandomQuestion}
