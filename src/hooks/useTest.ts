@@ -79,9 +79,11 @@ export default function useTest(id: string) {
       return;
     }
 
-    let questionsToChooseFrom = test.questions.filter((q) => !q.seen);
+    let questionsToChooseFrom = test.questions.filter(
+      (q) => !q.seen || !q.success,
+    );
 
-    if (!questionsToChooseFrom.length) {
+    if (questionsToChooseFrom.length === 0) {
       questionsToChooseFrom = test.questions;
     }
 
