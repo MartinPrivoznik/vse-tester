@@ -9,5 +9,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+      {children}
+    </main>
+  );
 }
