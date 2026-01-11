@@ -1,0 +1,18 @@
+# *
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://vse-tester.vercel.app/sitemap.xml
+
+# Google bot
+User-agent: Googlebot
+Allow: /
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
+
+# Disallow crawling of API routes if any
+User-agent: *
+Disallow: /api/

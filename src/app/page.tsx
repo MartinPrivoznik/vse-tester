@@ -12,12 +12,12 @@ export default function Home() {
     <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-xl text-center justify-center">
-          <span className={title({ color: "violet" })}>VŠE&nbsp;</span>
-          <span className={title()}>Tester V2.0</span>
-          <span className={subtitle()}>
+          <h1 className={title({ color: "violet" })}>VŠE&nbsp;</h1>
+          <h1 className={title()}>Tester V2.0</h1>
+          <p className={subtitle()}>
             Webová adaptace aplikace kompatibilní s .txt soubory pro appku VŠE
             tester
-          </span>
+          </p>
         </div>
         <div className="mt-8">
           <span>
