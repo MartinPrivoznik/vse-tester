@@ -106,6 +106,10 @@ export default function useTest(id: string) {
 
     const question = test.questions[questionIndex];
 
+    if (question.id === currentQuestion?.id) {
+      return;
+    }
+
     question.seen = true;
     shuffle(question.answers);
 
