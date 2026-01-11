@@ -9,6 +9,7 @@ import TestSidePanel from "./TestSidePanel";
 
 import useTest from "@/src/hooks/useTest";
 import TestStatisticsRow from "./TestStatisticsRow";
+import { TestLoadingSkeleton } from "@/src/app/my-work/[id]/loading";
 
 export default function TestView({ testId }: { testId: string }) {
   const {
@@ -34,7 +35,7 @@ export default function TestView({ testId }: { testId: string }) {
   }, [currentQuestion?.answers]);
 
   if (!test || !currentQuestion) {
-    return;
+    return <TestLoadingSkeleton />;
   }
 
   return (
